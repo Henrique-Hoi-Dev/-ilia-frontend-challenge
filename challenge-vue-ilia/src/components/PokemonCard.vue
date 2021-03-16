@@ -15,14 +15,6 @@ export default {
 }
 </script>
 <style scoped>
-.w-full {
-    width: 100%;
-}
-.max-w-xxs {
-    max-width: 13rem;
-}
-img {
-  height: auto;
-}
+
 </style>
 

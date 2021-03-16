@@ -3,12 +3,13 @@
   <search-pokemon @searching="url = $event"></search-pokemon>
   <fetch-json :url="url">
     <div slot-scope="{ response: cards, loading }">
-      <p v-if="loading">Loading...</p>
+      <p v-if="loading">Loading... <b-spinner variant="success" label="Spinning" /></p>
         <div v-else>
           <div class="flex flex-wrap">
             <pokemon-card v-for="pokemon in cards.cards" :key="pokemon.id" >
             <img slot="image" :src="pokemon.imageUrl" :alt="pokemon.name" class="w-full max-w-xxs" @click="thePokemon(pokemon)">
             <div slot="name" class="font-bold text-xl mb-2">Name:{{ pokemon.name }} </div>
+            <div slot="name" class="font-bold text-xl mb-2">Id:{{ pokemon.id }} </div>
           </pokemon-card>
         </div>     
       </div>
