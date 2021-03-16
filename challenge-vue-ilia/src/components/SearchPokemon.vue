@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div class="search">
+    <h1>Get your pokemon
+</h1>
     <input type="text"
            aria-label="Search" 
            class="input-search"
@@ -34,7 +36,9 @@ export default {
   border: 3px solid;
   border-radius: 8px;
 }
-
+.search {
+  margin-bottom: 2rem;
+}
 button {
   margin-left: 5px;
 }

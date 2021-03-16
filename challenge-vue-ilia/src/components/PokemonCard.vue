@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-xxs mb-6 mx-4" >
-    <div class=" shadow-md rounded-lg text-none">
+  <div class="card-search" >
+    <div class="card-info">
       <slot name="image"></slot>
     </div>
     <div>
@@ -15,6 +15,13 @@ export default {
 }
 </script>
 <style scoped>
-
+.card-search {
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.card-info {
+  margin-bottom: .5rem;
+}
 </style>
 
