@@ -1,21 +1,42 @@
 <template>
 <div>
-  <SearchPokemon />
+  <search-pokemon @searching="url = $event"></search-pokemon>
+  <fetch-json :url="url">
+    <div slot-scope="{ response: cards, loading }">
+      <p v-if="loading">Loading...</p>
+        <div v-else>
+          <div class="flex flex-wrap">
+            <pokemon-card v-for="pokemon in cards.cards" :key="pokemon.id" >
+            <img slot="image" :src="pokemon.imageUrl" :alt="pokemon.name" class="w-full max-w-xxs" @click="thePokemon(pokemon)">
+            <div slot="name" class="font-bold text-xl mb-2">Name:{{ pokemon.name }} </div>
+          </pokemon-card>
+        </div>     
+      </div>
+    </div>
+  </fetch-json>
 </div>   
 </template>
 
 <script>
 import SearchPokemon from "@/components/SearchPokemon";
+import FetchJson from '@/components/FetchJson.vue';
+import PokemonCard from '@/components/PokemonCard.vue';
 
 export default {
-  name: 'cards',
-  components: { SearchPokemon },
+  components: { SearchPokemon, FetchJson, PokemonCard },
   data() {
     return {
-      name: '',
-      searchText: '',
-      cardList: []
+      url: 'https://api.pokemontcg.io/v1/cards',
+      modalOpen: false,
+      pokemonData: {},
     };
+  },
+  methods: {
+    thePokemon(pokemon) {
+      this.modalOpen = true;
+      this.pokemonData = pokemon;
+      console.log(pokemon)
+    },
   },
 };
 </script>
