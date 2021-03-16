@@ -1,15 +1,13 @@
 <template>
   <div class="search">
-    <h1>Get your pokemon
-</h1>
-    <input type="text"
-           aria-label="Search" 
-           class="input-search"
-           name="Search" 
-          v-model="searchterm"
-          @keydown.enter="getUrl()">
-    <b-button variant="success"
-            @click="getUrl()">Search</b-button>      
+      <h1>Get your pokemon</h1>
+      <input type="text"
+            aria-label="Search" 
+            class="input-search"
+            name="Search" 
+            v-model="searchterm"
+            @keydown.enter="getUrl()">
+      <b-button variant="success" @click="getUrl()">Search</b-button>      
   </div>
 </template>
 

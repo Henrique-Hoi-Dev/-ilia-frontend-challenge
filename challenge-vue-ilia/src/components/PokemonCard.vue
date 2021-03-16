@@ -16,6 +16,8 @@ export default {
 </script>
 <style scoped>
 .card-search {
+  max-width: 13rem;
+
   margin-bottom: 1.5rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -23,5 +25,6 @@ export default {
 .card-info {
   margin-bottom: .5rem;
 }
+
 </style>
 
