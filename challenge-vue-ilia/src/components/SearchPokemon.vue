@@ -3,10 +3,10 @@
     <input type="text"
            aria-label="Search" 
            name="Search" 
-           class="border my-8 py-2 px-4 mr4"
+           class="py-2 px-4 mr4"
           v-model="searchterm"
           @keydown.enter="getUrl()">
-    <button class="bg-green houver:bg-green-dark text-white font-bold py-2 px-4 rounded"
+    <button class="py-2 px-4"
             @click="getUrl()">Search</button>      
   </div>
 </template>
@@ -29,4 +29,24 @@ export default {
 </script>
 
 <style scoped>
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.py-2 {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.font-bold {
+    font-weight: 700;
+}
+.rounded {
+    border-radius: .25rem;
+}
+button {
+    background-color: #3490dc;
+    margin-left: 5px;
+}
+
 </style>

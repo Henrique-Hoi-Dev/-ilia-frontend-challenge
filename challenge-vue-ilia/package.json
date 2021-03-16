@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "pokemontcgsdk": "^1.1.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -40,6 +39,12 @@
     "root": true,
     "env": {
       "node": true
+    },
+    "postcss": {
+      "plugins": {
+        "tailwindcss": "tailwind.js",
+        "autoprefixer": {}
+      }
     },
     "extends": [
       "plugin:vue/essential",
