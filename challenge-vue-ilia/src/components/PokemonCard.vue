@@ -11,7 +11,7 @@
 
 <script>
 export default {
-
+ 
 }
 </script>
 <style scoped>
@@ -25,6 +25,5 @@ export default {
 .card-info {
   margin-bottom: .5rem;
 }
-
 </style>
 

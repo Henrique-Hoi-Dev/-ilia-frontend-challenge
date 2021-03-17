@@ -7,22 +7,11 @@
         <div v-else>
           <div class="grid-list">
             <pokemon-card v-for="pokemon in cards.cards" :key="pokemon.id" >
-            <img slot="image" :src="pokemon.imageUrl" :alt="pokemon.name" class="w-full max-w-xxs" >
+            <img slot="image" :src="pokemon.imageUrl" :alt="pokemon.name"  @click="thePokemon(pokemon)" >
             <div slot="name" class="text-info">Name:{{ pokemon.name }} </div>
-            <div slot="name" class="text-info">Id:{{ pokemon.id }} </div>
-            <b-button v-b-modal.modalPopover variant="success" slot="name" @click="thePokemon(pokemon)" >Info</b-button>
-          </pokemon-card>
-          <b-modal  
-          id="modalPopover" 
-          title="Modal with Popover" ok-only>
-            <pokemon-info
-                :show="modalOpen"
-                @close="modalOpen = false"
-                :card= "pokemonData"
-
-            >
-            </pokemon-info>
-          </b-modal>
+            <div slot="name" class="text-info">Id:{{ pokemon.id }} </div>  
+            </pokemon-card>
+           
         </div>     
       </div>
     </div>
@@ -35,24 +24,12 @@
 import SearchPokemon from "@/components/SearchPokemon";
 import FetchJson from '@/components/FetchJson.vue';
 import PokemonCard from '@/components/PokemonCard.vue';
-import PokemonInfo from '@/components/PokemonInfo.vue';
+// import StatesPokemon from '@/views/StatesPokemon.vue';
+import mixinPokemon from '../mixinPokemon';
 
 export default {
-  components: { SearchPokemon, FetchJson, PokemonCard, PokemonInfo },
-  data() {
-    return {
-      url: 'https://api.pokemontcg.io/v1/cards',
-      modalOpen: false,
-      pokemonData: {},
-    };
-  },
-  methods: {
-    thePokemon(pokemon) {
-      this.modalOpen = true;
-      this.pokemonData = pokemon;
-      console.log(pokemon)
-    },
-  },
+  components: { SearchPokemon, FetchJson, PokemonCard },
+  mixins: [mixinPokemon]
 };
 </script>
 

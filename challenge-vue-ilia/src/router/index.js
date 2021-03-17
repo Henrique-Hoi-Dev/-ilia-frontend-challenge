@@ -20,6 +20,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "cards" */ "@/views/Cards.vue")
   },
+  {
+    path: "/statesPokemon",
+    name: "StatesPokemon",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (statesPokemon.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "statesPokemon" */ "@/views/StatesPokemon.vue")
+  },
 ];
 
 const router = new VueRouter({
