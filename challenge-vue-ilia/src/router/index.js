@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import StatesPokemon from '../views/StatesPokemon.vue';
 
 Vue.use(VueRouter);
 
@@ -12,8 +13,8 @@ const routes = [
     component: Home,
   },
   {
-    path: "/cards",
-    name: "Cards",
+    path: '/cards',
+    name: 'Cards',
     // route level code-splitting
     // this generates a separate chunk (cards.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -21,14 +22,10 @@ const routes = [
       import(/* webpackChunkName: "cards" */ "@/views/Cards.vue")
   },
   {
-    path: "/statesPokemon",
-    name: "StatesPokemon",
+    path: '/statesPokemon/:id',
+    name: 'statesPokemon',
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (statesPokemon.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "statesPokemon" */ "@/views/StatesPokemon.vue")
+    component: StatesPokemon,
   },
 ];
 

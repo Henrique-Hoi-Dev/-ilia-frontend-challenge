@@ -7,16 +7,15 @@
         <div v-else>
           <div class="grid-list">
             <pokemon-card v-for="pokemon in cards.cards" :key="pokemon.id" >
-            <img slot="image" :src="pokemon.imageUrl" :alt="pokemon.name"  @click="thePokemon(pokemon)" >
-            <div slot="name" class="text-info">Name:{{ pokemon.name }} </div>
+            <img slot="image" :src="pokemon.imageUrl" :alt="pokemon.name" >
+            <router-link slot="name" :to="`/statesPokemon/${pokemon.id}`" 
+            >Name:{{ pokemon.name }} + Info</router-link>
             <div slot="name" class="text-info">Id:{{ pokemon.id }} </div>  
             </pokemon-card>
-           
         </div>     
       </div>
     </div>
   </fetch-json>
- 
 </div>   
 </template>
 
@@ -24,7 +23,6 @@
 import SearchPokemon from "@/components/SearchPokemon";
 import FetchJson from '@/components/FetchJson.vue';
 import PokemonCard from '@/components/PokemonCard.vue';
-// import StatesPokemon from '@/views/StatesPokemon.vue';
 import mixinPokemon from '../mixinPokemon';
 
 export default {
@@ -46,6 +44,10 @@ export default {
 img {
   width: 100%;
   height: auto;
+}
+a {
+  text-decoration: none;
+  color: green;
 }
 
 </style>
