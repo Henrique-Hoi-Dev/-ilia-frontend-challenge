@@ -45,7 +45,7 @@
      </ul> 
       <div>
         <div v-for="attack in pokemon.attacks" :key="attack.id" >
-         <b-modal  id="modalPopover" title="Modal with Popover" ok-only>
+         <b-modal  id="modalPopover" title="Info Attacks" ok-only>
             <div >
                     <template  v-for="energy in attack.cost">
                         <img v-if="energy != 'Free'" 
@@ -54,14 +54,14 @@
                         :key="energy.id">
                     </template>
                  <div>
-                    <p>
+                    <p class="modal-attack">
                         {{ attack.name }}
                     </p>
                     <p >
                         {{ attack.text }}
                     </p>
                 </div>
-                <div >
+                <div class="modal-attack">
                    {{  attack.damage }}
                 </div>
             </div>
@@ -80,7 +80,7 @@ export default {
   props: ['id'],
   mixins: [mixinPokemon],
   data() {
-    return {     
+    return {
       data: {},
       baseUrl: process.env.BASE_URL
     }
@@ -89,7 +89,7 @@ export default {
     this.getName();
   },
   methods: { 
-    async getName(){
+    async getName() {
       const idP = this.$route.params.id;
 
       const res = await fetch(`https://api.pokemontcg.io/v1/cards/${idP}`);
@@ -114,5 +114,7 @@ export default {
   height: 35px;
   margin-left: 5px;
 }
-
+.modal-attack {
+  font-size: 2rem;
+}
 </style>
