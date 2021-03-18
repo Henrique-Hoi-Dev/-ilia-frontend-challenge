@@ -1,15 +1,75 @@
-<template>
- <div class="pokemon-info" >
-     <h1>{{ name }} </h1>
+<template  >
+ <div class="pokemon-info"  >
+     <h3 class="title-page">{{ name }} </h3>
     <hr> 
-   <div v-for="pokemon in data" :key="pokemon.id"> 
-    <p >{{ pokemon.name }} -- {{ pokemon.id }}</p>
+   <div class="list-1" v-for="pokemon in data" :key="pokemon.id" > 
      <img :src="pokemon.imageUrl" :alt="pokemon.name" >
-   </div>
-    <h2>Veio para page</h2> 
-    <b-modal>
+     <ul style="list-style: none;" >
+       <li>
+         <p>
+          Name: {{ pokemon.name }}
+         </p>       
+       </li>
+       <li>
+         <p>
+         Id: {{ pokemon.id }}  
+         </p>
+       </li>
+       <li>
+         <p>
+          Type: {{ pokemon.types[0] }} 
+         </p> 
+       </li>
+       <li v-for="resistance in pokemon.resistances" :key="resistance.id">
+         <p>
+          Resistances: {{ resistance.type }} 
+         </p>
+       </li>
+       <li v-for="weaknesse in pokemon.weaknesses" :key="weaknesse.id">
+         <p>
+          Weaknesse: {{ weaknesse.type }} 
+          <img :src="`${ baseUrl}${ weaknesse.type }.png`" 
+          :alt="`${weaknesse.type} energy`" class="mx-1" width="20px" height="20px">
+          {{ weaknesse.value }}
+         </p>
+       </li>
+       <li>
+         <p>
+         HP: {{ pokemon.hp}}  
+         <img v-if="pokemon.types" :src="`${ baseUrl}${ pokemon.types[0] }.png`" 
+            :alt="pokemon.types[0]" class="mx-2" width="25px" height="25px" 
+            :key="pokemon.types[0].id">
+         </p>
+       </li>
+        <b-button v-b-modal.modalPopover>Info Attacks</b-button>
+     </ul> 
+      <div>
+        <div v-for="attack in pokemon.attacks" :key="attack.id" >
+         <b-modal  id="modalPopover" title="Modal with Popover" ok-only>
+            <div >
+                    <template  v-for="energy in attack.cost">
+                        <img v-if="energy != 'Free'" 
+                        :src="`${ baseUrl}${ energy }.png`" 
+                        :alt="`${energy} energy`" class="mx-1" width="20px" height="20px" 
+                        :key="energy.id">
+                    </template>
+                 <div>
+                    <p>
+                        {{ attack.name }}
+                    </p>
+                    <p >
+                        {{ attack.text }}
+                    </p>
+                </div>
+                <div >
+                   {{  attack.damage }}
+                </div>
+            </div>
+         </b-modal>
+        </div>
+      </div>
       
-    </b-modal>
+    </div>       
   </div> 
 </template>
 
@@ -21,7 +81,8 @@ export default {
   mixins: [mixinPokemon],
   data() {
     return {     
-      data: {}
+      data: {},
+      baseUrl: process.env.BASE_URL
     }
   },
   beforeMount(){
@@ -34,13 +95,24 @@ export default {
       const res = await fetch(`https://api.pokemontcg.io/v1/cards/${idP}`);
       const data = await res.json();
       this.data = data;
-
-      console.log(idP.name)
     }
-  }
+  },
 }  
 </script>
 
-<style>
+<style >
+.list-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    padding: 2rem;
+    align-items: center;
+    list-style: none;
+}
+.btn-success {
+  height: 35px;
+  margin-left: 5px;
+}
 
 </style>

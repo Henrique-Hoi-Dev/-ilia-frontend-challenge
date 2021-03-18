@@ -4,7 +4,7 @@ export default {
       url: 'https://api.pokemontcg.io/v1/cards',
       modalOpen: false,
       pokemonData: {},
-      name: 'Informações do Pokemon',
+      name: 'Pokemon Information',
     }
   },
 }
